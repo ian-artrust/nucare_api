@@ -22,13 +22,9 @@ if(!$_SESSION){
                     
                     periode 
                     
-                FROM view_321b 
+                FROM view_321c 
                 
-                WHERE debit>0 
-                
-                AND keterangan = 'Setup Saldo Awal Periode'
-
-                AND status='Trial'";
+                WHERE status='Aktif'";
 
     } else {
         
@@ -40,13 +36,9 @@ if(!$_SESSION){
                     
                     periode 
                 
-                FROM view_321b 
+                FROM view_321c 
                 
-                WHERE debit>0  
-
-                AND keterangan = 'Setup Saldo Awal Periode'
-                
-                AND status='Trial' 
+                WHERE status='Aktif' 
                 
                 AND kode_daerah='$kode_daerah'";
 

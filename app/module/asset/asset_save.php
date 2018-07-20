@@ -71,7 +71,7 @@ if(!$_SESSION){
     
     $kat_asset 	    = strip_tags($_POST['kat_asset']);
 
-    $periode	= strip_tags($_POST['periode']);
+    $periode	    = strip_tags($_POST['periode']);
     
     $tgl_perolehan	= strip_tags($_POST['tgl_perolehan']);
 
@@ -102,6 +102,8 @@ if(!$_SESSION){
     $kode_akun_kredit = strip_tags($_POST['kode_akun_kredit']);
 
     $akun_kredit     = $_POST['akun_kredit'];
+
+    $no_rekening	= strip_tags($_POST['no_rekening']);
 
     $created        = date('Y-m-d');
 
@@ -207,7 +209,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun_asset',
@@ -217,7 +220,8 @@ if(!$_SESSION){
                  '$tgl_perolehan',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          $sqlJuKredit = "INSERT INTO 
@@ -230,7 +234,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$pos_dana',
@@ -240,7 +245,8 @@ if(!$_SESSION){
                  '$tgl_perolehan',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          if($kode_akun_debit=='' OR $kode_akun_kredit=='' OR $harga_perolehan==''){

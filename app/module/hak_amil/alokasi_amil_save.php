@@ -87,6 +87,10 @@ if(!$_SESSION){
 
     $a_kredit       = $_POST['a_kredit'];
 
+    $no_rekening    = strip_tags($_POST['no_rekening']);
+
+    $no_rekening_dua  = strip_tags($_POST['no_rekening_dua']);
+
     $created        = date('Y-m-d');
 
     $createdby      = $_SESSION['kode_petugas'];
@@ -95,7 +99,7 @@ if(!$_SESSION){
 
     $keterangan2    = $a_kredit." | ".$periode;
     
-    function jurnalDua(){
+    function jurnalDua($no_rekening_dua){
 
         include "../../../bin/koneksi.php";
 
@@ -158,7 +162,8 @@ if(!$_SESSION){
                     tgl_jurnal,
                     kode_daerah,
                     keterangan,
-                    status
+                    status,
+                    no_rekening
                 )VALUES(
                     '$no_jurnal2',
                     '$kda_debit',
@@ -168,7 +173,8 @@ if(!$_SESSION){
                     '$tgl_alokasi',
                     '$kode_daerah',
                     '$keterangan2',
-                    'Trial'
+                    'Trial',
+                    '$no_rekening_dua'
                 )";
 
         $sqlJuKredit2 = "INSERT INTO 
@@ -181,7 +187,8 @@ if(!$_SESSION){
                     tgl_jurnal,
                     kode_daerah,
                     keterangan,
-                    status
+                    status,
+                    no_rekening
                 )VALUES(
                     '$no_jurnal2',
                     '$kda_kredit',
@@ -191,7 +198,8 @@ if(!$_SESSION){
                     '$tgl_alokasi',
                     '$kode_daerah',
                     '$keterangan2',
-                    'Trial'
+                    'Trial',
+                    '$no_rekening_dua'
                 )";
         
         /** Menggunakan Transaction Mysql */
@@ -264,7 +272,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun_debit',
@@ -274,7 +283,8 @@ if(!$_SESSION){
                  '$tgl_alokasi',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          $sqlJuKredit = "INSERT INTO 
@@ -287,7 +297,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun_kredit',
@@ -297,7 +308,8 @@ if(!$_SESSION){
                  '$tgl_alokasi',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          if($kode_akun_debit=='' OR $kode_akun_kredit=='' OR $kda_debit=='' OR $kda_kredit=='' OR $jml_alokasi==''){
@@ -321,7 +333,7 @@ if(!$_SESSION){
                  
             $konek->commit();
             
-            jurnalDua();
+            jurnalDua($no_rekening_dua);
              
              $pesan 		= "Data Berhasil Disimpan";
  

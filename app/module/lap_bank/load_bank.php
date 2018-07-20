@@ -37,11 +37,11 @@ if(!$_SESSION){
                         debit,
                         kredit,
                         @saldo_awal_bank:=@saldo_awal_bank+debit-kredit as saldo 
-                    FROM view_323a, (SELECT @saldo_awal_bank:=0) y 
-                    WHERE tgl_jurnal BETWEEN '$dari_tgl' AND '$sampai_tgl'
-                    AND kode_sub_kat_akun='102' 
-                    AND ref_number='$no_rekening'
-                    AND status!='REJECT'";
+                    FROM view_323a x, (SELECT @saldo_awal_bank:=0) y 
+                    WHERE x.tgl_jurnal BETWEEN '$dari_tgl' AND '$sampai_tgl'
+                    AND x.kode_sub_kat_akun='102' 
+                    AND x.no_rekening='$no_rekening'
+                    AND x.status!='REJECT'";
 
     } else {
 
@@ -59,12 +59,12 @@ if(!$_SESSION){
                     debit,
                     kredit,
                     @saldo_awal_bank:=@saldo_awal_bank+debit-kredit as saldo 
-                FROM view_323a, (SELECT @saldo_awal_bank:=0) y 
-                WHERE tgl_jurnal BETWEEN '$dari_tgl' AND '$sampai_tgl'
-                AND kode_sub_kat_akun='102' 
-                AND ref_number='$no_rekening'
-                AND kode_daerah='$kode_daerah'
-                AND status!='REJECT'";
+                FROM view_323a x, (SELECT @saldo_awal_bank:=0) y 
+                WHERE x.tgl_jurnal BETWEEN '$dari_tgl' AND '$sampai_tgl'
+                AND x.kode_sub_kat_akun='102' 
+                AND x.no_rekening='$no_rekening'
+                AND x.kode_daerah='$kode_daerah'
+                AND x.status!='REJECT'";
 
     }
 

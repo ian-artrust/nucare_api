@@ -23,6 +23,7 @@ if(!$_SESSION){
                         kode_akun,
                         kode_sub_kat_akun,
                         ref_number,
+                        no_rekening,
                         status,
                         no_jurnal,
                         periode,
@@ -33,7 +34,7 @@ if(!$_SESSION){
                         @saldo_awal_bank:=@saldo_awal_bank+debit-kredit as saldo 
                     FROM view_323a x, (SELECT @saldo_awal_bank:=0) y 
                     WHERE x.kode_sub_kat_akun='102' 
-                    AND x.ref_number='$no_rekening'
+                    AND x.no_rekening='$no_rekening'
                     AND x.status!='REJECT'";
 
     } else {
@@ -44,6 +45,7 @@ if(!$_SESSION){
                         kode_akun,
                         kode_sub_kat_akun,
                         ref_number,
+                        no_rekening,
                         status,
                         no_jurnal,
                         periode,
@@ -54,7 +56,7 @@ if(!$_SESSION){
                         @saldo_awal_bank:=@saldo_awal_bank+debit-kredit as saldo 
                         FROM view_323a x, (SELECT @saldo_awal_bank:=0) y 
                         WHERE x.kode_sub_kat_akun='102' 
-                        AND x.ref_number='$no_rekening'
+                        AND x.no_rekening='$no_rekening'
                         AND x.kode_daerah='$kode_daerah' 
                         AND x.status!='REJECT'";
 

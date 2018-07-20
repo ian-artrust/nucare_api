@@ -83,6 +83,8 @@ if(!$_SESSION){
 
     $akun_kredit_angsuran   = $_POST['akun_kredit_angsuran'];
 
+    $no_rekening            = strip_tags($_POST['no_rekening']);
+
     $created        = date('Y-m-d');
 
     $createdby      = $_SESSION['kode_petugas'];
@@ -171,7 +173,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_debit_angsuran',
@@ -181,7 +184,8 @@ if(!$_SESSION){
                  '$tgl_angsuran',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          $sqlJuKredit = "INSERT INTO 
@@ -194,7 +198,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_kredit_angsuran',
@@ -204,7 +209,8 @@ if(!$_SESSION){
                  '$tgl_angsuran',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          if($kode_debit_angsuran=='' OR $kode_kredit_angsuran=='' OR $jml_angsuran==''){

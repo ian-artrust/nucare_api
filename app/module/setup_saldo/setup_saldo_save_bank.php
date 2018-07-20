@@ -122,7 +122,8 @@ if(!$_SESSION){
             tgl_jurnal,
             kode_daerah,
             keterangan,
-            status
+            status,
+            no_rekening
         )VALUES(
             '$no_jurnal',
             '$kode_akun_debit',
@@ -132,7 +133,8 @@ if(!$_SESSION){
             '$tgl_setup',
             '$kode_daerah',
             'Setup Saldo Awal Periode',
-            'Trial'
+            'Trial',
+            '$no_rekening'
         )";
     
     $sqlJuKredit = "INSERT INTO 
@@ -145,7 +147,8 @@ if(!$_SESSION){
             tgl_jurnal,
             kode_daerah,
             keterangan,
-            status
+            status,
+            no_rekening
         )VALUES(
             '$no_jurnal',
             '$kode_akun_kredit',
@@ -155,7 +158,8 @@ if(!$_SESSION){
             '$tgl_setup',
             '$kode_daerah',
             'Setup Saldo Awal Periode',
-            'Trial'
+            'Trial',
+            '$no_rekening'
         )";
 
     if ($jml_setup=="" || $kode_akun_debit=="" || $kode_akun_kredit=="") {

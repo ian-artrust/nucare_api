@@ -62,7 +62,7 @@ if(!$_SESSION){
 
         $r['sumber_dana'] = $row['sumber_dana'];
 
-        $r['tgl_pengajuan'] = $row['tgl_pengajuan'];
+        $r['tgl_realisasi'] = $row['tgl_realisasi'];
 
         $r['jml_realisasi'] = number_format($row['jml_realisasi']);
 

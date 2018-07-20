@@ -114,40 +114,6 @@ if(!$_SESSION){
  
      }elseif($kode_transaksi =='01'){
         
-        $new_saldo = intval($saldo) + intval($jml_transaksi);
-
-         /* SQL Query Simpan */
-         $sqlTrsBank = "INSERT INTO 
-         trs_bank(
-             no_transaksi,
-             no_rekening,
-             periode,
-             tgl_transaksi,
-             kode_transaksi,
-             keterangan,
-             debit,
-             kredit,
-             saldo,
-             status,
-             kode_daerah,
-             created,
-             createdby
-         )VALUES(
-             '$no_transaksi',
-             '$no_rekening',
-             '$periode',
-             '$tgl_transaksi',
-             '$kode_transaksi',
-             '$keterangan',
-             '$jml_transaksi',
-             '0',
-             '$new_saldo',
-             'Aktif',
-             '$kode_daerah',
-             '$created',
-             '$createdby'
-         )";
-
          $sqlJuHdr = "INSERT INTO 
              trs_juhdr(
                  no_jurnal,
@@ -183,7 +149,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun',
@@ -193,7 +160,8 @@ if(!$_SESSION){
                  '$tgl_transaksi',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          $sqlJuKredit = "INSERT INTO 
@@ -206,7 +174,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun_counter',
@@ -216,7 +185,8 @@ if(!$_SESSION){
                  '$tgl_transaksi',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
  
          if($akun_counter=='' OR $tgl_transaksi=='' OR $jml_transaksi==''){
@@ -249,40 +219,6 @@ if(!$_SESSION){
          
      }else{
  
-        $new_saldo = intval($saldo) - intval($jml_transaksi);
-         
-         /* SQL Query Simpan */
-        $sqlTrsBank = "INSERT INTO 
-            trs_bank(
-                no_transaksi,
-                no_rekening,
-                periode,
-                tgl_transaksi,
-                kode_transaksi,
-                keterangan,
-                debit,
-                kredit,
-                saldo,
-                status,
-                kode_daerah,
-                created,
-                createdby
-            )VALUES(
-                '$no_transaksi',
-                '$no_rekening',
-                '$periode',
-                '$tgl_transaksi',
-                '$kode_transaksi',
-                '$keterangan',
-                '0',
-                '$jml_transaksi',
-                '$new_saldo',
-                'Aktif',
-                '$kode_daerah',
-                '$created',
-                '$createdby'
-            )";
-
          $sqlJuHdr = "INSERT INTO 
              trs_juhdr(
                  no_jurnal,
@@ -318,7 +254,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun_counter',
@@ -328,7 +265,8 @@ if(!$_SESSION){
                  '$tgl_transaksi',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          $sqlJuKredit = "INSERT INTO 
@@ -341,7 +279,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun',
@@ -351,7 +290,8 @@ if(!$_SESSION){
                  '$tgl_transaksi',
                  '$kode_daerah',
                  '$keterangan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          if($akun_counter=='' OR $tgl_transaksi=='' OR $jml_transaksi==''){
@@ -374,8 +314,6 @@ if(!$_SESSION){
  
              /** Menggunakan Transaction Mysql */
              $konek->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-                    
-                // $insertBank         = $konek->query($sqlTrsBank); 
                     
                 $insertJuHeader     = $konek->query($sqlJuHdr);
                 

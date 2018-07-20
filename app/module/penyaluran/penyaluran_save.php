@@ -43,8 +43,6 @@ if(!$_SESSION){
 
     $no_pengajuan   = $_POST['no_pengajuan'];
 
-    $no_rekening    = $_POST['no_rekening'];
-
     $periode 	    = strip_tags($_POST['periode']);
 
     $tgl_penyaluran	= strip_tags($_POST['tgl_penyaluran']);
@@ -56,6 +54,8 @@ if(!$_SESSION){
     $kode_akun_debit 	= strip_tags($_POST['kode_akun_debit']);
     
     $kode_akun_kredit	= strip_tags($_POST['kode_akun_kredit']);
+
+    $no_rekening 	    = strip_tags($_POST['no_rekening']);
 
     $created        = date('Y-m-d');
 
@@ -121,7 +121,7 @@ if(!$_SESSION){
                  '$kode_daerah',
                  '$created',
                  '$createdby',
-                 '$no_rekening'
+                 '$no_pengajuan'
              )";
          
          $sqlJuDebit = "INSERT INTO 
@@ -134,7 +134,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun_debit',
@@ -144,7 +145,8 @@ if(!$_SESSION){
                  '$tgl_penyaluran',
                  '$kode_daerah',
                  '$pesan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          $sqlJuKredit = "INSERT INTO 
@@ -157,7 +159,8 @@ if(!$_SESSION){
                  tgl_jurnal,
                  kode_daerah,
                  keterangan,
-                 status
+                 status,
+                 no_rekening
              )VALUES(
                  '$no_jurnal',
                  '$kode_akun_kredit',
@@ -167,14 +170,15 @@ if(!$_SESSION){
                  '$tgl_penyaluran',
                  '$kode_daerah',
                  '$pesan',
-                 'Trial'
+                 'Trial',
+                 '$no_rekening'
              )";
          
          if($kode_akun_debit=='' OR $kode_akun_kredit=='' OR $tgl_penyaluran==''){
              
              $pesan 		= "Data Harus Diisi Tidak Boleh Kosong";
      
-             $response 	= array('pesan'=>$pesan, 'no_trskas'=>$no_trskas);
+             $response 	= array('pesan'=>$pesan, 'no_jurnal'=>$no_jurnal);
      
              echo json_encode($response);
         

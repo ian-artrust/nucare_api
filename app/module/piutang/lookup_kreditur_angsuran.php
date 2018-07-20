@@ -24,7 +24,7 @@ if(!$_SESSION){
 
                     sumber_dana 
 
-                FROM view_325";
+                FROM view_325 WHERE status!='REJECT'";
 
     } else {
 
@@ -42,7 +42,7 @@ if(!$_SESSION){
 
                 WHERE 
 
-                    kode_daerah = '$kode_daerah'";
+                    kode_daerah = '$kode_daerah' AND status!='REJECT'";
 
     }    
 
